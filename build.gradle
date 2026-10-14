@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'com.example'
+version = '1.0.0'
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
+
+repositories { mavenCentral() }
+
+dependencies {
+    compileOnly 'net.portswigger.burp.extensions:montoya-api:2026.7'
+
+    implementation 'io.swagger.parser.v3:swagger-parser:2.1.37'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.2'
+    implementation 'org.yaml:snakeyaml:2.3'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+}
+
+test { useJUnitPlatform() }
+
+jar {
+    archiveBaseName = 'swagger-coverage'
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    manifest {
+        attributes(
+            'Implementation-Title': 'Swagger Coverage Checker for Burp',
+            'Implementation-Version': project.version
+        )
+    }
+}

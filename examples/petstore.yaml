@@ -1,0 +1,40 @@
+openapi: 3.0.0
+info:
+  title: Swagger Petstore (trimmed)
+  version: 1.0.0
+servers:
+  - url: https://petstore.example.com/api/v1
+paths:
+  /pets:
+    get:
+      summary: List all pets
+      responses: { '200': { description: ok } }
+    post:
+      summary: Create a pet
+      responses: { '201': { description: created } }
+  /pets/{petId}:
+    get:
+      summary: Get a pet
+      responses: { '200': { description: ok } }
+    delete:
+      summary: Delete a pet
+      responses: { '204': { description: no content } }
+    patch:
+      summary: Update a pet
+      responses: { '200': { description: ok } }
+  /pets/{petId}/photo:
+    post:
+      summary: Upload photo
+      responses: { '200': { description: ok } }
+  /store/order:
+    post:
+      summary: Place order
+      responses: { '201': { description: created } }
+  /user/login:
+    get:
+      summary: Login
+      responses: { '200': { description: ok } }
+  /user/logout:
+    get:
+      summary: Logout
+      responses: { '200': { description: ok } }
